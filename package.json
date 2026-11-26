@@ -1,0 +1,1 @@
+{"name":"sfilm7","version":"0.1.0","private":true,"type":"module","scripts":{"test":"node --test test/*.test.mjs","check":"node --check src/index.mjs && node --check src/youtube.mjs && node --check src/catalog.mjs","deploy":"wrangler deploy"},"devDependencies":{"wrangler":"4.134.0"}}

@@ -1,0 +1,60 @@
+{
+  "id": "com.solyan.sfilm7",
+  "version": "0.1.0",
+  "name": "SFilm7 · Cinema AI",
+  "description": "Danh mục phim và hoạt hình từ các kênh YouTube công khai của Cinema AI.",
+  "resources": [
+    "catalog",
+    "meta",
+    "stream"
+  ],
+  "types": [
+    "movie"
+  ],
+  "idPrefixes": [
+    "sfilm7:"
+  ],
+  "catalogs": [
+    {
+      "type": "movie",
+      "id": "sfilm7-phim",
+      "name": "SFilm7 · Phim truyện",
+      "extra": [
+        {
+          "name": "search",
+          "isRequired": false
+        },
+        {
+          "name": "genre",
+          "isRequired": false
+        },
+        {
+          "name": "skip",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "type": "movie",
+      "id": "sfilm7-hoat-hinh",
+      "name": "SFilm7 · Hoạt hình",
+      "extra": [
+        {
+          "name": "search",
+          "isRequired": false
+        },
+        {
+          "name": "genre",
+          "isRequired": false
+        },
+        {
+          "name": "skip",
+          "isRequired": false
+        }
+      ]
+    }
+  ],
+  "behaviorHints": {
+    "adult": false
+  }
+}
