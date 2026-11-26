@@ -1,0 +1,27 @@
+name: Deploy SFilm7 (MANUAL ONLY)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-audit --no-fund
+      - run: npm run check && npm test
+      - name: Deploy isolated SFilm7 Cloudflare Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" && test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo 'Missing SFilm7 repo Cloudflare secrets'; exit 1; }
+          npx wrangler deploy
+      - name: Verify addon is live (manifest, catalog, metadata, ytId stream)
+        env:
+          BASE: https://sfilm7.solyan.workers.dev
+        run: node scripts/live-smoke.mjs
